@@ -110,6 +110,9 @@ def index(request):
 			close1=DataFrame1['Close'].tolist()
 			close2=DataFrame2['Close'].tolist()
 			s=str(request.POST['s'])
+			no=[]
+			no1=[]
+			no2=[]
 			for i in range(len(close)):
 				no.append(i+1)
 			for i in range(len(close1)):

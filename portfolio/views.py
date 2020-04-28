@@ -71,7 +71,7 @@ def index(request):
 	datap = []
 	DataFrame3="Table for Particular Stock"
 	#rem=investments.objects.filter(field_name__isnull=True).aggregate(Sum('price'))
-	query_results= investments.objects.all()
+	query_results= investments.objects.all().order_by('-id')[:10]
 	if request.method == 'POST':
 		if('stockname' in request.POST):
 			form = nameofstock(request.POST)

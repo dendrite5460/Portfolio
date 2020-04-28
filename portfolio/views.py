@@ -61,11 +61,13 @@ def index(request):
 	rem=1000000-amount
 	rem=round(rem, 2)
 	close=[]
-	close1=[]
-	close2=[]
+	close1=yf.download("AAPL",'2020-01-01',date.today() )
+	close1=close1['Close'].tolist()
+	close2=yf.download("TSLA",'2020-01-01',date.today() )
+	close2=close2['Close'].tolist()
 	no=[]
-	no1=[]
-	no2=[]
+	no1=[v+1 for v in range(len(close1))]
+	no2=[v+1 for v in range(len(close2))]
 	s=""
 	labels = []
 	datap = []
@@ -155,8 +157,6 @@ def analytics(request):
 		for i in range(len(close2)):
 			no2.append(i+1)
 	return render(request,'portfolio/analytics.html',{'close':close,'no':no,'s':s,'close1':close1,'close2':close2,'no1':no1,'no2':no2})
-
-
 
 
 

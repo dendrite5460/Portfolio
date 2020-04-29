@@ -14,7 +14,7 @@ from django.db.models import Sum
 import io
 import urllib, base64
 import quandl
-# Create your views here.
+
 
 def sales(request):
 	return render(request,'portfolio/sales.html')
@@ -51,8 +51,9 @@ def pie_chart(request):
 			'labels': labels,
 			'datap': datap,
 		})
-		
+#------work on this (As everything is on landing page)------------------------------------
 def index(request):
+	#intialize variables that we are going to pass
 	form = nameofstock()
 	price=0.0
 	m=money.objects.get(pk=1)
@@ -72,15 +73,17 @@ def index(request):
 	labels = []
 	datap = []
 	DataFrame3="Table for Particular Stock"
-	#rem=investments.objects.filter(field_name__isnull=True).aggregate(Sum('price'))
+	#fetch recent 10 investments
 	query_results= investments.objects.all().order_by('-id')[:10]
 	if request.method == 'POST':
+		#for buy stock,available assets,investments and pushing purcahses into investment table
 		if('stockname' in request.POST):
 			form = nameofstock(request.POST)
 			n=form.data['stockname']
 			api_key = 'BJQZ9I2H012Q7FDD'
 			ts = TimeSeries(key=api_key, output_format='json')
 			data, meta_data = ts.get_quote_endpoint(n)
+			#get price  real-time 
 			price=float(data['05. price'])
 			price=round(price, 2)
 			if(price!=0.0):
@@ -95,13 +98,11 @@ def index(request):
 					a.save()
 					rem=1000000-amount
 					rem=round(rem, 2)
-			#rem=investments.objects.filter(price__isnull=True).aggregate(Sum('price'))
-			
-			#if form.is_valid():
-			#	pass
+			#for table start to end
 		elif('sn'in  request.POST):
 			DataFrame3=yf.download(request.POST['sn'],request.POST['sdate1'],request.POST['edate1'])
 			DataFrame3=DataFrame3.to_html()
+			#for graphs start to end
 		else:
 			DataFrame = yf.download(request.POST['s'],request.POST['sdate'],request.POST['edate'])
 			DataFrame1 = yf.download("AAPL",request.POST['sdate'],request.POST['edate'])
@@ -121,6 +122,7 @@ def index(request):
 				no2.append(i+1)
 		
 	d=dict()
+	#for pie chart getting all investemnts summing up the stock by their labels
 	queryset = investments.objects.order_by('name')
 	for stock in queryset:
 		labels.append(stock.name)
@@ -132,10 +134,11 @@ def index(request):
 			d[labels[i]]=datap[i]
 	labels=list(d.keys())
 	datap=list(d.values())
-	
+	#returning all the calculates values to html
 	return render(request, 'portfolio/index.html',{'labels':labels,'datap':datap,'form':form,'price':price,'amount':amount,'query_results':query_results,'rem':rem,'close':close,'no':no,'s':s,'close1':close1,'close2':close2,'no1':no1,'no2':no2,'DataFrame3':DataFrame3})
 
-
+#work end
+# not needed now--------------------------------------------------------------------------
 def analytics(request):
 	#DataFrame=pd.DataFrame(index=[], columns=[])
 	close=[]
@@ -160,6 +163,3 @@ def analytics(request):
 		for i in range(len(close2)):
 			no2.append(i+1)
 	return render(request,'portfolio/analytics.html',{'close':close,'no':no,'s':s,'close1':close1,'close2':close2,'no1':no1,'no2':no2})
-
-
-

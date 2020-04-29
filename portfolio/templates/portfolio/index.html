@@ -13,10 +13,6 @@
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
   <title>Admin Dashboard</title>
   <style media="screen">
-
-    body{
-      background-color: #eee;
-    }
     .headtext {
       color: white;
     }
@@ -36,10 +32,6 @@
       color: white;
     }
 
-    .section-separation{
-      background: black;
-    }
-
   </style>
 </head>
 
@@ -50,7 +42,7 @@
     <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <div class="collapse navbar-collapse" id="myNavbar">
       <div class="container-fluid">
         <div class="row">
           <!-- sidebar -->
@@ -64,21 +56,15 @@
               <a href="#" class="text-dark">Group 5 </a>
             </div>
 
-            <div class="collapse navbar-collapse" id="myNavbar">
-
             <ul class="navbar-nav flex-column mt-4">
-              <li class="nav-item"><a href="{% url 'index' %}" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-home text-dark fa-lg mr-3"></i>Dashboard</a></li>
-
+              <li class="nav-item"><a href="{% url 'index' %}" class="nav-link text-black p-3 mb-2 current"><i class="fas fa-home text-dark fa-lg mr-3"></i>Dashboard</a></li>
               <li class="nav-item"><a href="#buystocks" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-user text-dark fa-lg mr-3"></i>Buy Stock</a></li>
-              <li class="nav-item"><a href="#stock-pie" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-chart-bar text-dark fa-lg mr-3"></i>Charts</a></li>
               <li class="nav-item"><a href="#purchase-table" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-envelope text-dark fa-lg mr-3"></i>Stock History</a></li>
-              <!-- <li class="nav-item"><a href="#" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-shopping-cart text-dark fa-lg mr-3"></i>Sales</a></li> -->
               <li class="nav-item"><a href="#stock-analytics" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-chart-line text-dark fa-lg mr-3"></i>Analytics</a></li>
-
+              <li class="nav-item"><a href="#stock-pie" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-chart-bar text-dark fa-lg mr-3"></i>Charts</a></li>
               <li class="nav-item"><a href="#stock-table" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-table text-dark fa-lg mr-3"></i>Tables</a></li>
-
+             
             </ul>
-             </div>
           </div>
           <!-- end of sidebar -->
 
@@ -99,16 +85,15 @@
               <div class="col-md-3">
                 <ul class="navbar-nav">
                   <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-comments text-muted fa-lg"></i></a></li>
-                 <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-bell text-muted fa-lg"></i></a></li>
                                  <div class="dropdown">
-                    <!-- <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-bell text-muted fa-lg"></i>
                     </button>
                     <div class="dropdown-menu notification" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="#">Hakuna Matata..... News1ksjjdhskfn</a>
                       <a class="dropdown-item" href="#">Another action..... News2</a>
                     </div>
-                  </div> -->
+                  </div>
                   <li class="nav-item ml-md-auto"><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-dark fa-lg"></i></a></li>
                 </ul>
               </div>
@@ -117,7 +102,7 @@
           <!-- end of top-nav -->
         </div>
       </div>
-
+    </div>
   </nav>
   <!-- end of navbar -->
 
@@ -141,6 +126,7 @@
   </div>
   <!-- end of modal -->
 
+  <!-- cards -->
   <section>
     <div class="container-fluid">
       <div class="row">
@@ -152,8 +138,8 @@
                   <div class="d-flex justify-content-between">
                     <i class="fas fa-shopping-cart fa-3x text-warning"></i>
                     <div class="text-right text-secondary">
-                      <h5>Investments</h5>
-                      <h4>$ {{rem}}</h4>
+                      <h6>Investments</h6>
+                      <h5>$ {{rem}}</h5>
                     </div>
                   </div>
                 </div>
@@ -164,9 +150,9 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <i class="fas fa-money-bill-alt fa-3x text-success"></i>
-                    <div class="text-right text-secondary">
-                      <h5>Available Assets</h5>
-                      <h4>$ {{amount}}</h4>
+                    <div class=" text-right text-secondary">
+                      <h6>Available Assets</h6>
+                      <h5>$ {{amount}}</h5>
                     </div>
                   </div>
                 </div>
@@ -179,8 +165,8 @@
                   <div class="d-flex justify-content-between">
                     <i class="fas fa-users fa-3x text-info"></i>
                     <div class="text-right text-secondary">
-                      <h5>Clients</h5>
-                      <h3>150</h3>
+                      <h6>Clients</h6>
+                      <h5>150</h5>
                     </div>
                   </div>
                 </div>
@@ -193,8 +179,8 @@
                   <div class="d-flex justify-content-between">
                     <i class="fas fa-chart-line fa-3x text-danger"></i>
                     <div class="text-right text-secondary">
-                      <h5>RM Name</h5>
-                      <h3>Mukesh</h3>
+                      <h6>RM Name</h6>
+                      <h5>Mukesh</h5>
                     </div>
                   </div>
                 </div>
@@ -206,111 +192,85 @@
     </div>
   </section>
   <!-- end of cards -->
+  
 
-  <hr class="section-separation">
-
-  <!-- end of cards -->
-
-
-
-<!-- portfolio -->
-  <div class="container-fluid " style="text-align: center";>
-      <section id="buystocks">
-    <div class="input-row row jumbotron " >
-      <div class="col-md-4 ml-auto jumbotron card card-image" >
-        <h2 class="stock-text pb-3"><u>Buy Stock</u></h2>
+<!-- buy stock -->
+<section id="buystocks">
+    <div class="container-fluid ">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-11 mx-auto col-lg-5 p-2 jumbotron"style="border: 1px solid #aaaaaa;border-radius: 5px;">
+                    <h2 class="stock-text pb-3"><u>Buy Stock</u></h2>
+         
         <form method="POST" class="post-form">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit" class="save btn btn-outline-dark">Buy stock</button>
+
+          <button type="submit" class="save btn btn-outline-dark" action="#purchase-table">Buy stock</button>
+          <br><br>
         </form>
-      </div>
-      <div class="col-md-4  ml-auto  jumbotron card card-image " >
-        <h2 class="mb-4"><u>Entered Stock</u> </h2>
+           </div>   
+            <div class="col-lg-5 col-sm-11 mx-auto p-2 jumbotron"style="border: 1px solid #aaaaaa;border-radius: 5px;">
+               <h2 class="mb-4"><u>Entered Stock</u> </h2>
         {{ form.stockname}}
         <h2 class="mt-2"style="padding-top: 0px"><u>Current Price</u></h2>
-        {{price}}
+        <h2 style="color:green">${{price}}</h2>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+  <!--end buy stock-->
+<!-- pie chart-->
+ <section id="stock-pie">
+    <div class="container-fluid ">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-11 mx-auto  p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+               <h1 class="mb-4">Investments on Stocks</h1>
+      <canvas id="pie-chart1"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+      var config1 = {
+        type: 'pie',
+        data: {
+          datasets: [{
+            data: {{ datap|safe }},
+            backgroundColor: [
+              '#fcbf1e', '#40bad5', '#035aa6', '#120136', '#862a5c'
+            ],
+            label: 'Number of '
+          }],
+          labels: {{ labels|safe }}
+        },
+        options: {
+          responsive: true
+        }
+      };
 
-<hr class="section-separation">
+      window.onload = function() {
+        var ctx1 = document.getElementById('pie-chart1').getContext('2d');
+        window.myPie = new Chart(ctx1, config1);
+      };
 
-
-
-<!-- piechart-->
-<section id="stock-pie">
-  <div class="container-fluid jumbotron text-center">
-       <div class="row " >
-        <div class="col-xl-10 " >
-
-        <div class="row mt-40" >
-        <!-- <div class="col-md-6  mt-6">
-          <h1 class="mb-4">Investments on Stocks</h1>
-        <canvas id="pie-chart"></canvas>
-      </div> -->
-      <div class="col-md-6 ml-auto mt-6">
-          <h1 class="mb-4"> Current Investments in Stocks</h1>
-        <canvas id="pie-chart1"></canvas>
-      </div>
-  </div>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-      <script>
-        // var config = {
-        //   type: 'pie',
-        //   data: {
-        //     datasets: [{
-        //       data: [30,70],
-        //       backgroundColor: [
-        //         'black', 'red', 'blue', 'violet', '#D3D3D3'
-        //       ],
-        //       label: 'Number of '
-        //     }],
-        //     labels: ['Mymoney','Investments']
-        //   },
-        //   options: {
-        //     responsive: true
-        //   }
-        // };
-        //
-        // window.onload = function() {
-        //   var ctx = document.getElementById('pie-chart').getContext('2d');
-        //   window.myPie = new Chart(ctx, config);
-        // };
-        var config1 = {
-          type: 'pie',
-          data: {
-            datasets: [{
-              data: {{ datap|safe }},
-              backgroundColor: [
-                '#fcbf1e', '#40bad5', '#035aa6', '#120136', '#862a5c'
-              ],
-              label: 'Number of '
-            }],
-            labels: {{ labels|safe }}
-          },
-          options: {
-            responsive: true
-          }
-        };
-
-        window.onload = function() {
-          var ctx1 = document.getElementById('pie-chart1').getContext('2d');
-          window.myPie = new Chart(ctx1, config1);
-        };
-
-      </script>
+    </script>
+           </div>   
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+<!-- end pie chart-->
 
-
-    <!-- display table-->
-     <section id="purchase-table">
-<div class="row" >
-      <div class="col-xl-10 ml-auto" style="border-top: 2px solid grey";>
-        <h1 class="table-heading" >Purchase History</h1>
+<!--purchase history-->
+<section id="purchase-table">
+    <div class="container-fluid "style="border: 1px solid #aaaaaa;">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-11 mx-auto  p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+                 <h1 class="table-heading" >Purchase History</h1>
         <table class="table table-light table-striped">
           <tr style="background-color:black ;color:white";>
             <th class="headtext">Name</th>
@@ -326,53 +286,40 @@
             <td>{{ item.current_time }}</td>
           </tr>
           {% endfor %}
-        </table>
+        </table>   
+           </div>   
+        </div>
       </div>
     </div>
-</section>
-
-<hr class="section-separation">
-<!--end of table-->
-<!--
-    <div class="row" >
-      <div class="col-xl-10 ml-auto" style="border: 5px solid pink;">
-<h1>Display graph</h1>
-
-  </div>
-    </div>
-
-</div>
--->
-<section id="stock-analytics">
-
-  <div class="container-fluid">
+  </section>
+<!--end of purchase history-->
 
 
-    <div  class="row mt-3 " >
-      <div class="col-xl-10 ml-auto" >
-        <h2 class="mb-6">Values of stock in range(Startdate,Enddate)</h2>
-      <div class="row">
 
-   <!--2nd graph-->
-    <div class="col-md-6 mt-3">
-     
+<!--values of stocks in the range-->
+   <section id="stock-analytics">
+    <div class="container-fluid ">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-11 mx-auto col-lg-5 p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+                    <h2 > Recent Stock </h2>
      <h3 class="text-center">
        AAPL
      </h3>
      <canvas id="line-chart1" width="800" height="450"></canvas>
-     <h2 > Recent Stock </h2>
      <script >
-
+       
 new Chart(document.getElementById("line-chart1"), {
   type: 'line',
   data: {
     labels:{{no1}},
-    datasets: [{
+    datasets: [{ 
         data: {{close1}},
         label: "Stock",
         borderColor: "black",
         fill: false
-      },
+      }, 
     ]
   },
   options: {
@@ -383,27 +330,25 @@ new Chart(document.getElementById("line-chart1"), {
   }
 });
      </script>
-   </div>
-   <!--3rd graph-->
-<div class="col-md-6 mt-3" style="padding:bottom: 20px";>
-    
+           </div>   
+            <div class="col-lg-5 col-sm-11 mx-auto p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+                <h2> Recent stock </h2>
      <h3 class="text-center">
        TSLA
      </h3>
      <canvas id="line-chart2" width="800" height="450"></canvas>
-      <h2> Recent stock </h2>
      <script >
-
+       
 new Chart(document.getElementById("line-chart2"), {
   type: 'line',
   data: {
     labels:{{no2}},
-    datasets: [{
+    datasets: [{ 
         data: {{close2}},
         label: "Stock",
         borderColor: "red",
         fill: false
-      },
+      }, 
     ]
   },
   options: {
@@ -414,29 +359,35 @@ new Chart(document.getElementById("line-chart2"), {
   }
 });
      </script>
-   </div>
-  </div>
-
-</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row mt-5 mb-5 jumbotron" >
-      <div class="col-xl-10 ml-auto pt-3" style="border: 3px solid black;">
-        
+  </section>
+  <!--end of values of stocks in the range-->
+<!-- input for graph-->
+<section>
+    <div class="container-fluid ">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-12 mx-auto  p-2 "style="border: 2px solid #aaaaaa;border-radius: 5px;">
+                <h4>Values of stock in range(Startdate,Enddate)</h4><br>
   <form method="POST" class="post-form mt-3">
     <div class="row">
     <div class="col-xl-4">
   <label for="">StartDate:</label>
-   {% csrf_token %}
+   {% csrf_token %} 
   <input type="date" id="sdate" name="sdate">
 </div>
 <div class="col-xl-4">
   <label for="">EndDate:</label>
-   {% csrf_token %}
+   {% csrf_token %} 
   <input type="date" id="edate" name="edate">
 </div>
  <div class="col-xl-4 ">
   <label for="">ShareName:</label>
-   {% csrf_token %}
+   {% csrf_token %} 
   <input type="text" id="s" name="s">
 </div>
 
@@ -446,29 +397,38 @@ new Chart(document.getElementById("line-chart2"), {
       <input type="submit" class="btn btn-primary">
   </div>
   </div>
-</form>
-  </div>
+</form>    
+           </div>   
+          
+        </div>
+      </div>
     </div>
- <div class="row">
-    <div class="col lg-10 ml-auto">
-       <div class="col-md-10 ml-auto ">
-     <h3> Required Stock values </h3>
+  </section>
+<!-- end of input for graph-->
+<!--output of input-->
+<section>
+    <div class="container-fluid ">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-11 mx-auto col-lg-11 p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+               <h3> Required Stock values </h3>
      <h3 class="text-center">
        {{s}}
      </h3>
      <canvas id="line-chart" width="800" height="450"></canvas>
      <script >
-
+       
 new Chart(document.getElementById("line-chart"), {
   type: 'line',
   data: {
     labels:{{no}},
-    datasets: [{
+    datasets: [{ 
         data: {{close}},
         label: "Stock",
         borderColor: "orange",
         fill: false
-      },
+      }, 
     ]
   },
   options: {
@@ -478,38 +438,37 @@ new Chart(document.getElementById("line-chart"), {
     }
   }
 });
-     </script>
-   </div>
+     </script>     
+           </div>   
+            
+        </div>
+      </div>
     </div>
-  </div>
-
-  </div>
-
   </section>
-
-<hr class="section-separation">
-
-<section id=stock-table>
-  <div class="container-fluid ">
-     <div class="row mt-5 jumbotron" >
-
-      <div class="col-xl-10 ml-auto pb-3 pt-3" style="border: 2px solid black;">
-  <form method="POST" class="post-form">
-    <h4 class=" text-center mb-3">Retrieve stock values from start date to end</h4>
+<!--end of output of input-->
+<!--input for tables-->
+<section id="stock-table">
+    <div class="container-fluid ">
+      <div class="row text-center">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-12 mx-auto  p-2 "style="border: 1px solid #aaaaaa;">
+                    <form method="POST" class="post-form">
+    <h4 class=" text-center mb-3">Retrieves stock values from start date to end</h4>
     <div class="row">
     <div class="col-xl-4">
   <label for="">StartDate:</label>
-   {% csrf_token %}
+   {% csrf_token %} 
   <input type="date" id="sdate1" name="sdate1">
 </div>
 <div class="col-xl-4">
   <label for="">EndDate:</label>
-   {% csrf_token %}
+   {% csrf_token %} 
   <input type="date" id="edate1" name="edate1">
 </div>
  <div class="col-xl-4 ">
   <label for="">ShareName:</label>
-   {% csrf_token %}
+   {% csrf_token %} 
   <input type="text" id="sn" name="sn">
 </div>
 
@@ -517,25 +476,45 @@ new Chart(document.getElementById("line-chart"), {
   <div class="row mt-3 text-center">
   <div class="col-xl-10 ">
       <input type="submit" class="btn btn-success " >
+
   </div>
   </div>
 </form>
-  </div>
+           </div>   
+        </div>
+        <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-11 mx-auto  p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+                   <h1>Data for stock </h1>
+                   <center>
+     {{DataFrame3 | safe}} </center>
+           </div>   
+        </div>
+      </div>
     </div>
+  </section>
+<!--end of input for tables-->
 
-
-    <div  class="row mt-5 text-center" >
-      <div class="col-xl-10 ml-auto" style="border: 1px solid grey;">
-     <h1>Data for stock </h1>
-        <center>
-          {{DataFrame3 | safe}}</center>
-  </div>
+  <!-- 
+<section>
+    <div class="container-fluid "style="border: 1px solid #aaaaaa;">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-11 mx-auto col-lg-5 p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+                    
+           </div>   
+            <div class="col-lg-5 col-sm-11 mx-auto p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
+               
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
   </section>
 
 
+end of responsive template-->
+
+   
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
@@ -543,3 +522,4 @@ new Chart(document.getElementById("line-chart"), {
 </body>
 
 </html>
+

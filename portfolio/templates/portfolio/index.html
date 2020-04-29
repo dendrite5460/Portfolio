@@ -294,7 +294,46 @@
   </section>
 <!--end of purchase history-->
 
+<!-- input for graph-->
+<section>
+    <div class="container-fluid ">
+      <div class="row text-center ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5 ">
+            <div class=" col-sm-12 mx-auto  p-2 "style="border: 2px solid #aaaaaa;border-radius: 5px;">
+                <h4>Values of stock in range(Startdate,Enddate)</h4><br>
+  <form method="POST" class="post-form mt-3">
+    <div class="row">
+    <div class="col-xl-4">
+  <label for="">StartDate:</label>
+   {% csrf_token %} 
+  <input type="date" id="sdate" name="sdate">
+</div>
+<div class="col-xl-4">
+  <label for="">EndDate:</label>
+   {% csrf_token %} 
+  <input type="date" id="edate" name="edate">
+</div>
+ <div class="col-xl-4 ">
+  <label for="">ShareName:</label>
+   {% csrf_token %} 
+  <input type="text" id="s" name="s">
+</div>
 
+  </div>
+  <div class="row text-center">
+  <div class="col-xl-10 mt-4 mb-4" >
+      <input type="submit" class="btn btn-primary">
+  </div>
+  </div>
+</form>    
+           </div>   
+          
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- end of input for graph-->
 
 <!--values of stocks in the range-->
    <section id="stock-analytics">
@@ -365,46 +404,7 @@ new Chart(document.getElementById("line-chart2"), {
     </div>
   </section>
   <!--end of values of stocks in the range-->
-<!-- input for graph-->
-<section>
-    <div class="container-fluid ">
-      <div class="row text-center ">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <div class="row pt-md-5 mt-md-3 mb-5 ">
-            <div class=" col-sm-12 mx-auto  p-2 "style="border: 2px solid #aaaaaa;border-radius: 5px;">
-                <h4>Values of stock in range(Startdate,Enddate)</h4><br>
-  <form method="POST" class="post-form mt-3">
-    <div class="row">
-    <div class="col-xl-4">
-  <label for="">StartDate:</label>
-   {% csrf_token %} 
-  <input type="date" id="sdate" name="sdate">
-</div>
-<div class="col-xl-4">
-  <label for="">EndDate:</label>
-   {% csrf_token %} 
-  <input type="date" id="edate" name="edate">
-</div>
- <div class="col-xl-4 ">
-  <label for="">ShareName:</label>
-   {% csrf_token %} 
-  <input type="text" id="s" name="s">
-</div>
 
-  </div>
-  <div class="row text-center">
-  <div class="col-xl-10 mt-4 mb-4" >
-      <input type="submit" class="btn btn-primary">
-  </div>
-  </div>
-</form>    
-           </div>   
-          
-        </div>
-      </div>
-    </div>
-  </section>
-<!-- end of input for graph-->
 <!--output of input-->
 <section>
     <div class="container-fluid ">

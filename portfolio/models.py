@@ -12,6 +12,26 @@ class investments(models.Model):
 	price = models.FloatField(null=True, blank=True, default=None)
 	date_created = models.CharField(max_length=200, null=True)
 	current_time= models.CharField(max_length=200, null=True)
+	gain_loss= models.CharField(max_length=200, null=True)
+
+	def __str__(self):
+		return self.name
+class investmentsinfunds(models.Model):
+	name = models.CharField(max_length=200, null=True)
+	price = models.FloatField(null=True, blank=True, default=None)
+	date_created = models.CharField(max_length=200, null=True)
+	current_time= models.CharField(max_length=200, null=True)
+	gain_loss= models.CharField(max_length=200, null=True)
+
+	def __str__(self):
+		return self.name
+class investmentsinbonds(models.Model):
+	name = models.CharField(max_length=200, null=True)
+	price = models.FloatField(null=True, blank=True, default=None)
+	date_created = models.CharField(max_length=200, null=True)
+	current_time= models.CharField(max_length=200, null=True)
+	gain_loss= models.CharField(max_length=200, null=True)
+
 	def __str__(self):
 		return self.name
 		

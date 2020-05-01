@@ -7,7 +7,6 @@ attrs==19.3.0
 backcall==0.1.0
 beautifulsoup4==4.9.0
 bleach==3.1.4
-blpapi==3.14.0
 boto3==1.12.46
 botocore==1.15.46
 certifi==2020.4.5.1
@@ -64,7 +63,6 @@ openpyxl==3.0.3
 pandas==1.0.3
 pandocfilters==1.4.2
 parso==0.6.2
-pdblp==0.1.8
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==7.1.1

@@ -19,10 +19,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index,name='index'), 
-    path('tables/',views.tables,name='tables'),
-    path('analytics/',views.analytics,name='analytics'),
-    path('sales/',views.sales,name='sales'),
-    path('pie_chart/', views.pie_chart, name='pie_chart'),
+    path('funds/', views.funds, name='funds'),
+    path('bonds/', views.bonds, name='bonds'),
 ]
 
+ 
  

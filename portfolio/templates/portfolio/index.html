@@ -10,6 +10,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
   <title>Admin Dashboard</title>
   <style media="screen">
@@ -61,8 +62,8 @@
               <li class="nav-item"><a href="#buystocks" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-user text-dark fa-lg mr-3"></i>Buy Stock</a></li>
               <li class="nav-item"><a href="#purchase-table" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-envelope text-dark fa-lg mr-3"></i>Stock History</a></li>
               <li class="nav-item"><a href="#stock-analytics" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-chart-line text-dark fa-lg mr-3"></i>Analytics</a></li>
-              <li class="nav-item"><a href="#stock-pie" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-chart-bar text-dark fa-lg mr-3"></i>Charts</a></li>
-              <li class="nav-item"><a href="#stock-table" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-table text-dark fa-lg mr-3"></i>Tables</a></li>
+              <li class="nav-item"><a href="{% url 'bonds' %}" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-chart-bar text-dark fa-lg mr-3"></i>Bonds</a></li>
+              <li class="nav-item"><a href="{% url 'funds' %}" class="nav-link text-black p-3 mb-2 sidebar-link"><i class="fas fa-table text-dark fa-lg mr-3"></i>Funds</a></li>
              
             </ul>
           </div>
@@ -203,17 +204,18 @@
             <div class=" col-sm-11 mx-auto col-lg-5 p-2 jumbotron"style="border: 1px solid #aaaaaa;border-radius: 5px;">
                     <h2 class="stock-text pb-3"><u>Buy Stock</u></h2>
          
-        <form method="POST" class="post-form">
-          {% csrf_token %}
-          {{ form.as_p }}
+        <form method="POST" class="post-form" id="edit_form" >
+           {% csrf_token %}
+         <input type="text" name="stockname" id="stockname">
 
-          <button type="submit" class="save btn btn-outline-dark" action="#purchase-table">Buy stock</button>
+          <button type="submit" id="submit_button"class="save btn btn-outline-dark" action="#purchase-table">Buy stock</button>
           <br><br>
+         
         </form>
            </div>   
             <div class="col-lg-5 col-sm-11 mx-auto p-2 jumbotron"style="border: 1px solid #aaaaaa;border-radius: 5px;">
                <h2 class="mb-4"><u>Entered Stock</u> </h2>
-        {{ form.stockname}}
+        {{stockname}}
         <h2 class="mt-2"style="padding-top: 0px"><u>Current Price</u></h2>
         <h2 style="color:green">${{price}}</h2>
           </div>
@@ -277,6 +279,7 @@
             <th class="headtext">Price</th>
             <th class="headtext">Date</th>
             <th class="headtext">Time</th>
+            <th class="headtext">Profit/Loss</th>
           </tr>
           {% for item in query_results %}
           <tr>
@@ -284,6 +287,7 @@
             <td>{{ item.price }}</td>
             <td>{{ item.date_created }}</td>
             <td>{{ item.current_time }}</td>
+             <td>{{ item.gain_loss }}</td>
           </tr>
           {% endfor %}
         </table>   
@@ -294,14 +298,13 @@
   </section>
 <!--end of purchase history-->
 
-<!-- input for graph-->
 <section>
     <div class="container-fluid ">
       <div class="row text-center ">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <div class="row pt-md-5 mt-md-3 mb-5 ">
             <div class=" col-sm-12 mx-auto  p-2 "style="border: 2px solid #aaaaaa;border-radius: 5px;">
-                <h4>Values of stock in range(Startdate,Enddate)</h4><br>
+                <h4>Graph of stock values in range(Startdate,Enddate)</h4><br>
   <form method="POST" class="post-form mt-3">
     <div class="row">
     <div class="col-xl-4">
@@ -333,78 +336,12 @@
       </div>
     </div>
   </section>
-<!-- end of input for graph-->
 
-<!--values of stocks in the range-->
-   <section id="stock-analytics">
-    <div class="container-fluid ">
-      <div class="row text-center ">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <div class="row pt-md-5 mt-md-3 mb-5 ">
-            <div class=" col-sm-11 mx-auto col-lg-5 p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
-                    <h2 > Recent Stock </h2>
-     <h3 class="text-center">
-       AAPL
-     </h3>
-     <canvas id="line-chart1" width="800" height="450"></canvas>
-     <script >
-       
-new Chart(document.getElementById("line-chart1"), {
-  type: 'line',
-  data: {
-    labels:{{no1}},
-    datasets: [{ 
-        data: {{close1}},
-        label: "Stock",
-        borderColor: "black",
-        fill: false
-      }, 
-    ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Stock price at different dates'
-    }
-  }
-});
-     </script>
-           </div>   
-            <div class="col-lg-5 col-sm-11 mx-auto p-2 "style="border: 1px solid #aaaaaa;border-radius: 5px;">
-                <h2> Recent stock </h2>
-     <h3 class="text-center">
-       TSLA
-     </h3>
-     <canvas id="line-chart2" width="800" height="450"></canvas>
-     <script >
-       
-new Chart(document.getElementById("line-chart2"), {
-  type: 'line',
-  data: {
-    labels:{{no2}},
-    datasets: [{ 
-        data: {{close2}},
-        label: "Stock",
-        borderColor: "red",
-        fill: false
-      }, 
-    ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Stock price at different dates'
-    }
-  }
-});
-     </script>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<
   <!--end of values of stocks in the range-->
+<!-- input for graph-->
 
+<!-- end of input for graph-->
 <!--output of input-->
 <section>
     <div class="container-fluid ">
@@ -418,7 +355,54 @@ new Chart(document.getElementById("line-chart2"), {
      </h3>
      <canvas id="line-chart" width="800" height="450"></canvas>
      <script >
-       
+
+  //get the line chart canvas
+  var ctx = $("#line-chart");
+
+  //line chart data
+  var data = {
+    labels:[{% for i in no1 %}"{{ i }}",{% endfor %}],
+    datasets: [
+      {
+        label: "Stocks",
+        data: {{close1}},
+        backgroundColor: "blue",
+        borderColor: "lightblue",
+        fill: false,
+        lineTension: 0,
+        radius: 5
+      }
+    ]
+  };
+
+  //options
+  var options = {
+    responsive: true,
+    title: {
+      display: true,
+      position: "top",
+      text: "Line Graph",
+      fontSize: 18,
+      fontColor: "#111"
+    },
+    legend: {
+      display: true,
+      position: "bottom",
+      labels: {
+        fontColor: "#333",
+        fontSize: 16
+      }
+    }
+  };
+
+  //create Chart class object
+  var chart = new Chart(ctx, {
+    type: "line",
+    data: data,
+    options: options
+  });
+
+       /**
 new Chart(document.getElementById("line-chart"), {
   type: 'line',
   data: {
@@ -437,7 +421,7 @@ new Chart(document.getElementById("line-chart"), {
       text: 'Stock price at different dates'
     }
   }
-});
+});**/
      </script>     
            </div>   
             
@@ -515,11 +499,10 @@ new Chart(document.getElementById("line-chart"), {
 end of responsive template-->
 
    
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   <script src="{% static '/css/js/script.js' %}"></script>
 </body>
 
 </html>
-
